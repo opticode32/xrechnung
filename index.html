@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de-de">
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/funktionen.js"></script>
+    <script type="text/javascript" src="js/template.js"></script>
+    <script type="text/javascript" src="js/rechnungsposition.js"></script>
+    <script type="text/javascript" src="js/verkaeufer.js"></script>
+    <script type="text/javascript" src="js/testdaten.js"></script>
+    <link href="./css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="verkaeufer"></div>
+    <div id="button_area">
+        <button id="bt_erstellen">Erstellen</button>
+        <br>
+        <button id="bt_speichern">Speichern</button>
+        <br>
+        <button id="bt_testdaten_einsetzen">Testdaten</button>
+    </div>
+    <div id="kaeufer">
+        <h2>Käuferdaten</h2>
+            <input type="text" id="Kundennummer" name="kundennummer" placeholder = "Kundennummer" value="">
+            <input type="text" id="Kunde_Name" name="kunde_name" placeholder="Firmenname" value="">
+            <input type="text" id="Kunde_Strasse" name="kunde_strasse" placeholder="Straße" value="">
+            <input type="text" id="Kunde_Strasse_2" name="kunde_strasse_2" placeholder="Straße Zusatz" value="">
+            <input type="text" id="Kunde_PLZ" name="kunde_plz" placeholder="PLZ" value="">
+            <input type="text" id="Kunde_Stadt" name="kunde_stadt" placeholder="Stadt" value="">
+            <input type="text" id="Kunde_Land" name="kunde_land" placeholder="Länderkürzel, z.B. 'DE' für Deutschland" value="">
+            <input type="text" id="Kunde_Mail" name="kunde_mail" placeholder="email" value="">
+    </div>
+    <div id="lieferung">
+        <h2>Lieferung/Empfänger</h2>
+            <input type="text" id="Lieferdatum" name="lieferdatum" placeholder="Lieferdatum [JJJJ-MM-DD]" value="">
+            <input type="text" id="Lieferort_Kennung" name="lieferort_kennung" placeholder="Lieferort/Kennung" value="">
+        <h3>Lieferadresse</h3>
+            <input type="text" id="Empfaenger_Name" name="empfaenger_name" placeholder="Empfänger im umsatzsteuerrechtlichen Sinne" value="">
+            <input type="text" id="Lieferadresse_Strasse_Nr" name="lieferadresse_strasse_nr" placeholder="Strasse und Hausnummer" value="">
+            <input type="text" id="Lieferadresse_Zusatz" name="lieferadresse_zusatz" placeholder="Adresse Zusatz" value="">
+            <input type="text" id="Lieferadresse_Land" name="lieferadresse_land" placeholder="Länderkürzel, z.B. 'DE' für Deutschland" value="">
+            <input type="text" id="Lieferadresse_PLZ" name="lieferadresse_plz" placeholder="PLZ" value="">
+            <input type="text" id="Lieferadresse_Ort" name="lieferadresse_ort" placeholder="Ort" value="">
+    </div>
+    <div id="zahlung">
+        <h2>Zahlung</h2>
+            <input type="text" id="Zahlungsweise" name="zahlungsweise" placeholder="Zahlungsweise, '58' bedeutet 'Überweisung'" value="58">
+            <input type="text" id="IBAN" name="iban" placeholder="IBAN" value="">
+            <textarea id="Zahlungsbedingungen" rows="5" cols="100" name="zahlungsbedingungen" placeholder="Zahlungsbedingungen #SKONTO#TAGE#PROZENT.00#BASISBETRAG (optional)#, z.B. #SKONTO#7#5.00#" value=""></textarea>
+            <div class="radioset">
+                <input id="mwst_standard" type="radio" class="mwst_radio" name="mwst" value="S" checked>Standard</input>
+                <input id="mwst_frei_export" type="radio" class="mwst_radio" name="mwst" value="G">Export mehrwertsteuerfrei</input>
+                <input id="mwst_frei_eu" type="radio" class="mwst_radio" name="mwst" value="K">EU mehrwertsteuerfrei</input>
+            </div>
+    </div>
+    <div id="positionen">
+        <h2>Rechnungsdaten</h2>
+        <input type="text" id="Rechnungsnummer" name="rechnungsnummer" placeholder="Rechnungsnummer" value="">
+        <input type="text" id="Rechnungsdatum" name="rechnungsdatum" placeholder="Rechnungsdatum [JJJJ-MM-DD]" value="">
+        <input type="text" id="Faelligkeitsdatum" name="faelligkeitsdatum" placeholder="Fälligkeitsdatum [JJJJ-MM-DD]" value="">
+        <input type="text" id="Rechnungsart" name="rechnungsart" title="Hinweis" placeholder="Rechnungsart (326: Teilrechnung | 380: Handelsrechnung | 384: Rechnungskorrektur | 389: Selbstausgestellte Rechnung (Gutschrift im Gutschriftsverfahren))" value="">
+        <input type="text" id="Bemerkung_Rechnung" name="bemerkung_rechnung" placeholder="Bemerkung zur Rechnung" value="">
+        <input type="text" id="Waehrung" name="waehrung" placeholder="Währung, z.B. 'EUR'" value="EUR">
+        <input type="text" id="Kommission_Kunde" name="kommission_kunde" placeholder="Kommission, durch Kunde angegeben / Leitweg-ID" value="">
+        
+        <h2>Rechnungspositionen</h2>
+        <div>1x (Bemerkung) #12345 *Name* _Beschreibung_ €123.45 M19% R0% [Kommission]</div>
+        <textarea id="Positionen" rows="10" cols="150"></textarea>
+
+    </div>
+    <div id="ergebnis">
+        <h3>Ergebnis</h3>
+<!--        <div id="xrechnung"></div>
+    -->
+
+        <textarea id="xrechnung" rows="100" cols="150"></textarea>
+    </div>
+    
+</body>
