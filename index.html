@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="de-de">
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/daten_einlesen.js"></script>
+    <script type="text/javascript" src="js/funktionen.js"></script>
+    <script type="text/javascript" src="js/template.js"></script>
+    <script type="text/javascript" src="js/rechnungsposition.js"></script>
+    <script type="text/javascript" src="js/verkaeufer.js"></script>
+    <script type="text/javascript" src="js/testdaten.js"></script> 
+    <link href="./css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="button_area">
+        <button id="bt_erstellen">Erstellen</button>
+        <br>
+        <button id="bt_speichern">Speichern</button>
+        <br>                                                    <!-- Diese beiden Zeilen für den normalen Betrieb entfernen oder auskommentieren -->
+        <button id="bt_testdaten_einsetzen">Testdaten</button>  <!-- Dienen nur zum Testen und Herumspielen mit Phantasie-Daten                  -->
+        <br>
+        <a href="hilfe.html" id="bt_hilfe" target="_blank">Hilfe</a>
+    </div>
+    <div id = "tables">
+        <table>
+            <tr class="headline">
+                <td><h2>Käuferdaten</h2></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Kundennummer</td>
+                <td><input type="text" id="Kundennummer" name="kundennummer" placeholder = "Kundennummer" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" id="Kunde_Name" class="rot" name="kunde_name" placeholder="Firmenname" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Straße</td>
+                <td><input type="text" id="Kunde_Strasse" class="rot" name="kunde_strasse" placeholder="Straße" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Adresszusatz</td>
+                <td><input type="text" id="Kunde_Strasse_2" name="kunde_strasse_2" placeholder="Straße Zusatz" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>PLZ</td>
+                <td><input type="text" id="Kunde_PLZ" class="rot" name="kunde_plz" placeholder="PLZ" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Ort</td>
+                <td><input type="text" id="Kunde_Ort" class="rot" name="kunde_ort" placeholder="Stadt" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Land</td>
+                <td><input type="text" id="Kunde_Land" class="rot" name="kunde_land" placeholder="Länderkürzel, z.B. 'DE' für Deutschland" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Mail</td>
+                <td><input type="text" id="Kunde_Mail" class="rot" name="kunde_mail" placeholder="email" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Steuer-ID</td>
+                <td><input type="text" id="Kunde_Steuer_ID" class="rot" name="kunde_steuer_id" placeholder="Steueridentifikation, benötigt für innergemeinschaftliche Lieferungen" value=""></td>
+                <td>Wird nur benötigt bei innergemeinschaftlichen Leistungen</td>
+            </tr>
+<!--  -->
+            <tr class="headline">
+                <td><h2>Lieferung/Empfänger</h2></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Lieferdatum [JJJJ-MM-DD]</td>
+                <td><input type="text" id="Lieferdatum" name="lieferdatum" class="rot" placeholder="Lieferdatum [JJJJ-MM-DD]" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Lieferort Kennung</td>
+                <td><input type="text" id="Lieferort_Kennung" name="lieferort_kennung" placeholder="Lieferort/Kennung" value=""></td>
+                <td></td>    
+            </tr>
+            <tr class="headline_2">
+                <td><h3>Lieferadresse</h3></td>
+                <td></td>
+                <td></td>
+            </tr>        
+            <tr>
+                <td>Name Empfänger</td>
+                <td><input type="text" id="Empfaenger_Name" name="empfaenger_name" placeholder="Empfänger im umsatzsteuerrechtlichen Sinne" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Straße und Hausnummer</td>
+                <td><input type="text" id="Lieferadresse_Strasse_Nr" name="lieferadresse_strasse_nr" placeholder="Strasse und Hausnummer" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Adresszusatz</td>
+                <td><input type="text" id="Lieferadresse_Zusatz" name="lieferadresse_zusatz" placeholder="Adresse Zusatz" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Lieferland</td>
+                <td><input type="text" id="Lieferadresse_Land" name="lieferadresse_land" placeholder="Länderkürzel, z.B. 'DE' für Deutschland" value="">
+                <td></td>
+                </td>
+            </tr>
+            <tr>
+                <td>PLZ</td>
+                <td><input type="text" id="Lieferadresse_PLZ" name="lieferadresse_plz" placeholder="PLZ" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Ort</td>
+                <td><input type="text" id="Lieferadresse_Ort" name="lieferadresse_ort" placeholder="Ort" value=""></td>
+                <td></td>
+            </tr>
+<!-- -->
+            <tr class="headline">
+                <td><h2>Zahlung</h2></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Zahlungsweise</td>
+                <td><input type="text" id="Zahlungsweise" name="zahlungsweise" class="rot" placeholder="Zahlungsweise -> 58: Überweisung | 48: Bank-Karte | 54: Kreditkarte | 10: bar" value="58"></td>
+                <td>58: Überweisung | 48: Bank-Karte | 54: Kreditkarte | 10: bar
+                </td>
+            </tr>
+            <tr>
+                <td>IBAN</td>
+                <td><input type="text" id="IBAN" name="iban" class="rot" placeholder="IBAN" value=""></td>
+                <td>Hier erscheint die IBAN des Verkäufers, die in der Datei "verkaeufer.js" hinterlegt wurde; sie kann aber manuell durch eine andere ersetzt werden.</td>
+            </tr>
+            <tr>
+                <td>Zahlungsbedingungen</td>
+                <td><textarea id="Zahlungsbedingungen" rows="5" cols="100" name="zahlungsbedingungen" placeholder="Zahlungsbedingungen T[Tage n] [Prozent]% B[Basisbetrag, optional], z.B. T3 5% B150" value=""></textarea></td>
+                <td>Zahlungsbedingungen T[Tage n] [Prozent]% B[Basisbetrag, optional], z.B. T3 5% B150</td>
+            </tr>
+            <tr>
+                <td>MWST Kategorie</td>
+                <td>
+                    <div id="mwst_kategorie_set" class="radioset rot">
+                    <input id="mwst_standard" type="radio" class="mwst_radio" name="mwst" value="S" checked>Standard</input>
+                    <input id="mwst_frei_export" type="radio" class="mwst_radio" name="mwst" value="G">Export mehrwertsteuerfrei</input>
+                    <input id="mwst_frei_eu" type="radio" class="mwst_radio" name="mwst" value="K">EU mehrwertsteuerfrei</input>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+<!-- -->
+            <tr class="headline">
+                <td><h2>Rechnungsdaten</h2></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Rechnungsnummer</td>
+                <td><input type="text" id="Rechnungsnummer" class="rot" name="rechnungsnummer" placeholder="Rechnungsnummer" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Rechnungsdatum</td>
+                <td><input type="text" id="Rechnungsdatum" class="rot" name="rechnungsdatum" placeholder="Rechnungsdatum [JJJJ-MM-DD]" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Fälligkeitsdatum</td>
+                <td><input type="text" id="Faelligkeitsdatum" name="faelligkeitsdatum" placeholder="Fälligkeitsdatum [JJJJ-MM-DD]" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Rechnungsart</td>
+                <td><input type="text" id="Rechnungsart" class="rot" name="rechnungsart" title="Hinweis" placeholder="Rechnungsart (326: Teilrechnung | 380: Handelsrechnung | 389: Gutschrift | 384: Rechnungskorrektur | 389: Selbstausgestellte Rechnung (Gutschrift im Gutschriftsverfahren))" value=""></td>
+                <td>326: Teilrechnung | 380: Handelsrechnung | 389: Gutschrift | 384: Rechnungskorrektur | 389: Selbstausgestellte Rechnung (Gutschrift im Gutschriftsverfahren)</td>
+            </tr>
+            <tr>
+                <td>Bemerkung</td>
+                <td><input type="text" id="Bemerkung_Rechnung" name="bemerkung_rechnung" placeholder="Bemerkung zur Rechnung" value=""></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Währung</td>
+                <td><input type="text" id="Waehrung" class="rot" name="waehrung" placeholder="Währung, z.B. 'EUR'" value="EUR"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Kommission</td>
+                <td><input type="text" id="Kommission_Kunde" class="rot" name="kommission_kunde" placeholder="Kommission, durch Kunde angegeben / Leitweg-ID" value=""></td>
+                <td></td>
+            </tr>
+            <tr class="headline">
+                <td><h2>Rechnungspositionen</h2></td>
+                <td>
+                    <div>1x (Bemerkung) #12345 *Name* _Beschreibung_ €123.45 M19% [Kommission]</div>
+                    <textarea id="Positionen" rows="10" cols="150" class="rot" ></textarea>
+                </td>
+                <td>
+                    1x -> Stückzahl<br>
+                    (Bemerkung) -> Bemerkung, in runden Klammern<br>
+                    #12345 -> Artikelnummer, vorangestelltes "#"<br>
+                    *Name* -> Name, eingeschlossen in zwei "*"<br>
+                    _Beschreibung_ -> Beschreibung, eingeschlossen in zwei Unterstriche<br>
+                    €123.45 -> Bruttopreis, vorangestelltes "€"<br>
+                    M19% -> Mehrwertsteuersatz, eingeschlossen durch "M" und "%""<br>
+                    [Kommission] -> Kommission, eingeschlossen in eckige Klammern
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="ergebnis">
+        <h3>Ergebnis</h3>
+        <textarea id="xrechnung" rows="100" cols="150"></textarea>
+    </div>
+    
+</body>
