@@ -1,19 +1,5 @@
 var mwst_satz_standard = "19";
 
-function display_data_verkauefer(){
-    var verkaeufer_info =   verkaeufer_data.firmenname + "<br>" +
-                            verkaeufer_data.firmenname_komplett +"<br>" +
-                            verkaeufer_data.strasse + "<br>";
-    if (verkaeufer_data.strasse_zusatz != ""){verkaeufer_info += verkaeufer_date.strasse_zusatz + "<br>";}
-    verkaeufer_info +=      verkaeufer_data.land + " " + verkaeufer_data.plz + " " + verkaeufer_data.stadt + "<br>" + 
-                            "mail: " + verkaeufer_data.mail + "<br>" +
-                            "Umsatzsteuer-ID: " + verkaeufer_data.umsatzsteuer_id + "<br>" + 
-                            "Handelsregister-Eintrag: " + verkaeufer_data.handelsregister_eintrag + "<br>" + 
-                            "Rechtsform: " + verkaeufer_data.zusatz_rechtsform + "<br><br>" +
-                            "Kontakt: " + verkaeufer_data.kontakt.name + ", " + "Telefon: " + verkaeufer_data.kontakt.telefon + ", " + "mail: " + verkaeufer_data.kontakt.mail + "<br>" + "IBAN: " + verkaeufer_data.IBAN + "<br>";
-    $('#verkaeufer').html('<h2>Verkäufer</h2>'+verkaeufer_info);
-}
-
 function zahldaten_eintragen(){
     $('#IBAN').val(verkaeufer_data.IBAN);
     $('#Zahlungsbedingungen').val(verkaeufer_data.Zahlungsbedingungen);
@@ -235,15 +221,12 @@ function speichern(){
     blob = new Blob([ $('#xrechnung').val() ], { type: "XML/plain" });
 
     const blobURL = URL.createObjectURL(blob);
-    // Create the `<a download>` element and append it invisibly.
     const a = document.createElement('a');
     a.href = blobURL;
     a.download = 'R'+$('#Rechnungsnummer').val()+'.xml';
     a.style.display = 'none';
     document.body.append(a);
-    // Programmatically click the element.
     a.click();
-    // Revoke the blob URL and remove the element.
     setTimeout(() => {
         URL.revokeObjectURL(blobURL);
         a.remove();
@@ -512,6 +495,11 @@ function mwst_kategorie_event(){
     if ($('input[name="mwst"]:checked').val() == "K"){$('#Kunde_Steuer_ID').css('background-color','rgb(253, 236, 236)');}
 }
 
+function clear(){
+    $('input,textarea').val('');
+    window.location.href=window.location.href;
+}
+
 
 $(document).ready(function(){
     zahldaten_eintragen();  
@@ -519,6 +507,7 @@ $(document).ready(function(){
 
     $('#bt_erstellen').click(function(){xml_erstellen();});
     $('#bt_speichern').click(function(){speichern();});
+    $('#bt_clear').click(function(){clear();});
     $('#bt_testdaten_einsetzen').click(function(){testdaten_einsetzen();});
     $('input[name="mwst"]').on("change",(function(){mwst_kategorie_event();}));
 });
