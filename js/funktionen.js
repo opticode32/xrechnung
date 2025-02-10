@@ -18,11 +18,16 @@ function betrag_zurechtbiegen(zahl, mwst){
     zahl_neu = runden((zahl_start)/(1+mwst_start/100));
     zahl_neu = runden(zahl_neu*(1+mwst_start/100));
 
+    if (zahl_neu != zahl_start){betragsaenderung = "ja";}
+
     if (zahl_neu>zahl_start){
-        zahl_start=zahl_start-0.01;
-        zahl_neu = runden(zahl_start/(1+mwst_start/100));
+        zahl_start_=zahl_start-0.01;
+        zahl_neu = runden(zahl_start_/(1+mwst_start/100));
         zahl_neu = runden(zahl_neu*(1+mwst_start/100));
+            
+
     }
+
 
     return zahl_neu;
 }
@@ -237,6 +242,7 @@ function speichern(){
 
 function xml_erstellen(){
     var abw_lieferadresse = "nein";
+    betragsaenderung = "nein";
     template = template_original;
     var zaehler=0;
     var xml_positionen = "";
@@ -487,6 +493,9 @@ function xml_erstellen(){
 
 // Einfügen des XML in das Ergebnisfeld
     $('#xrechnung').val(template);
+    if (betragsaenderung == "ja"){
+        alert('Es wurden Beträge geändert, um Rundungsfehler zu vermeiden!');
+    }
 }
 
 function mwst_kategorie_event(){
